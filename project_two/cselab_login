@@ -1,5 +1,0 @@
-ssh shepa135@csel-kh4250-02.cselabs.umn.edu
-
-mysql -u C4131S19G103 -hcse-curly.cse.umn.edu -P3306 -p C4131S19G103
-
-10639

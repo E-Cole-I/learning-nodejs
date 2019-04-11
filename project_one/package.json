@@ -1,11 +1,11 @@
 {
-  "name": "shepa135_hw05",
+  "name": "project_one",
   "version": "1.0.0",
-  "description": "Assignment 5",
-  "main": "createServerStudentV2.js",
+  "description": "Project One NodeJS",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "shepa135",
+  "author": "Coleman Shepard",
   "license": "ISC"
 }

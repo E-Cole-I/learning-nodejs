@@ -1,12 +1,12 @@
 {
-  "name": "shepa135_hw06",
+  "name": "Coleman Shepard",
   "version": "1.0.0",
-  "description": "Asignmnent 6",
+  "description": "Project Two",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "shepa135",
+  "author": "Coleman Shepard",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
