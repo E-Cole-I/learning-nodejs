@@ -1,0 +1,119 @@
+﻿<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .scroll {
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                        overflow: auto;
+                    };
+
+    </style>
+</head>
+
+<body>
+     <nav class="navbar navbar-default">
+          <div class="container-fluid">
+              <ul class="nav navbar-nav">
+                  <li><a href="/"><b>Home</b></a></li>
+                  <li><a href="/login"><b>Login</b></a></li>
+                  <li><a href="/schedule"><b>Schedule</b></a></li>
+                  <li><a href="/addSchedule"><b>Add Schedule Event</b></a></li>
+                  <li><a href="/stock"><b>Stock Page</b></a></li>
+                  <li> <a href="/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+              </ul>
+          </div>
+      </nav><br><br><br>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body"><center>Welcome to Stock Page</center></div>
+        </div>
+    </div>
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-6">Company</td>
+                            <td class="col-md-6">
+                                <div class="form-group">
+                                    <select id="stocks" name="Company">
+                                        <option value="MSFT">Microsoft</option>
+                                        <option value="BA">Boeing Company</option>
+                                        <option value="AAPL">Apple Inc</option>
+                                        <option value="AMZN">Amazon</option>
+                                        <option value="NVDA">NVIDIA Corporation</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button id="data" type="button">Get Data</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <table class="table" id="StockData">
+            <thead>
+                <tr>
+                    <th scope="col">Company-MetaData</th>
+                    <th scope="col">Stock-Info</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+
+
+    </script>
+    <script>
+
+        document.getElementById("data").addEventListener("click", myFunction);
+
+        function myFunction() {
+            var stock_comp = document.getElementById("stocks").value;
+            console.log(stock_comp);
+
+            // Send a request with this information
+            var api_key = '2CUMBA5T04HLCA80';
+            var url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + stock_comp + "&apikey=" + api_key;
+
+            // Actually send the request
+            $.getJSON(url, function( data ) {
+                var meta_data = JSON.stringify(data["Meta Data"]);
+                var stock_info = JSON.stringify(data["Time Series (Daily)"]);
+                var table_entry = '<tr> <td class="scroll">' + meta_data + '</td>' + '<td class="scroll">' + stock_info + '</td> <tr>';
+                //Append to the table
+                $("tbody").append(table_entry); 
+
+            });
+
+
+
+
+        }
+
+    </script>
+</body>
+</html>

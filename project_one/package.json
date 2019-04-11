@@ -1,0 +1,11 @@
+{
+  "name": "shepa135_hw05",
+  "version": "1.0.0",
+  "description": "Assignment 5",
+  "main": "createServerStudentV2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shepa135",
+  "license": "ISC"
+}
