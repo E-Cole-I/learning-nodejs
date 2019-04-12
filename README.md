@@ -1,3 +1,5 @@
+![NodeJS](https://cdn-images-1.medium.com/max/1600/1*aeWo6e6FC8InJwBl3TmpDw.jpeg)
+
 # learning-nodejs
 
 This is a archive for my early NodeJS projects to build upon my skills. 
