@@ -1,0 +1,173 @@
+
+<html>
+<head>
+  <title>Map Query!</title>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="./client/data/data.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+  <style>
+    #map { 
+    	height: 60%; 
+    	width: 900px; 
+    	float: left;
+    	margin-left: 3%;
+    }
+
+    #form-map {
+    	float: left;
+    	max-width: 30%;
+    }
+
+    #block-display {
+    	width: 50%;
+    	margin: auto;
+    }
+
+    .button-sub {
+    	background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 5px;
+		}
+
+    h2 {
+    	margin: auto;
+    	text-align: center;
+    	padding-bottom: 3%;
+    }
+
+    p {
+    	text-align: center;
+    	padding-bottom: 2%;
+    }
+
+
+
+  </style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+       	<div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href="/home"><b>Home</b></a></li>
+                    <li><a href="/mapquery"><b>Map Query</b></a></li>
+                </ul>
+      	</div>
+  		</nav>
+      <br><br><br>
+      <h2> Welcome to Map Query! </h2>
+      <p> Write Queries in the right panel that interact with the map. Right now, it's just a country database, but this will be expanded. </p>
+      <p> Example: { "type": "Feature", "properties": { "ADMIN": 
+"Afghanistan", "ISO_A3": "AFG" }} </p>
+
+<div id="block-display">
+  <div id="map"></div>
+  <div id="form-map">
+  	<form action="/query" id="usrform" method="POST">
+	  <textarea rows="6" cols="50" name="comment" form="usrform"></textarea>
+	  <input class="button-sub" type="submit">
+	</form>
+	</div>
+</div>
+
+
+  <script>
+
+  // initialize the map
+  var map = L.map('map').setView([42.35, -71.08], 2);
+
+  // load a tile layer
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 19,
+    id: 'mapbox.light',
+    accessToken: 'pk.eyJ1IjoiY29sZWZ1c2lvbiIsImEiOiJjamc1aGNmMW0xYzkxMnJsamY0djQ2cmJzIn0.aenDPrx_dyONEil9ploDoQ'
+}).addTo(map);
+
+
+const onEachFeature = (feature, layer) => {
+  // eslint-disable-line no-use-before-define
+  const popupContent = `
+  <table>
+  <tr>
+    <th>Country</th>
+    <td>${feature.properties.NAME_1}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2010)</th>
+    <td>${feature.properties.year2010}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2011)</th>
+    <td>${feature.properties.year2011}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2012)</th>
+    <td>${feature.properties.year2012}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2013)</th>
+    <td>${feature.properties.year2013}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2014)</th>
+    <td>${feature.properties.year2014}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2015)</th>
+    <td>${feature.properties.year2015}</td>
+  </tr>
+  <tr>
+    <th>Armed Forces (2016)</th>
+    <td>${feature.properties.year2016}</td>
+  </tr>
+  
+</table>`;
+
+  if (feature.properties && feature.properties.popupContent) {
+    popupContent += feature.properties.popupContent;
+  }
+
+  var customOptions =
+        {
+        'Width': '500',
+        'className' : 'custom'
+        }
+
+  layer.bindPopup(popupContent, customOptions);
+}
+
+
+var myStyle = {
+    "color": "#FF8819",
+    "weight": 3,
+    "opacity": 0.65
+};
+
+
+var c2 = new L.geoJson(localData, {
+  style: myStyle,
+  onEachFeature: onEachFeature
+}).addTo(map);
+
+map.fitBounds(c2.getBounds());
+
+
+</script>
+
+
+</body>
+</html>

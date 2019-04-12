@@ -71,10 +71,10 @@ function scheduler() {
   var mysql = require("mysql");
 
   var con = mysql.createConnection({
-    host: "cse-curly.cse.umn.edu",
-    user: "C4131S19G103", // replace with the database user provided to you
-    password: "10639", // replace with the database password provided to you
-    database: "C4131S19G103", // replace with the database user provided to you
+    host: "",
+    user: "", 
+    password: "", 
+    database: "", 
     port: 3306
   });
 
@@ -166,10 +166,10 @@ app.post('/postScheduleEntry', function(req, res, reqBody) {
   console.log('Add Event Body Post', req.body.eventName)
   
   var con = mysql.createConnection({
-  host: "cse-curly.cse.umn.edu",
-  user: "C4131S19G103", // replace with the database user provided to you
-  password: "10639", // replace with the database password provided to you
-  database: "C4131S19G103", // replace with the database user provided to you
+  host: "",
+  user: "", 
+  password: "", 
+  database: "", 
   port: 3306
   });
 
@@ -216,10 +216,10 @@ app.post('/sendLoginDetails', function(req, res, reqBody) {
   var valid = 0;
 
   var con = mysql.createConnection({
-    host: "cse-curly.cse.umn.edu",
-    user: "C4131S19G103", // replace with the database user provided to you
-    password: "10639", // replace with the database password provided to you
-    database: "C4131S19G103", // replace with the database user provided to you
+    host: "",
+    user: "", 
+    password: "", 
+    database: "", 
     port: 3306
   });
 

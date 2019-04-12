@@ -1,0 +1,20 @@
+{
+  "name": "g-server",
+  "version": "1.0.0",
+  "description": "This is a geospatial server using MongoDB.",
+  "main": "gserve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "geospatial"
+  ],
+  "author": "Coleman Shepard",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1"
+  }
+}
