@@ -1,5 +1,6 @@
 # learning-nodejs
 
+This is a archive for my early NodeJS projects to build upon my skills. 
 
 ## Project 1
 
@@ -8,7 +9,7 @@ Simple webserver and website using NodeJS.
 
 ## Project 2
 
-Webserver, website, and database connection using NodeJS, Express, and MySQL.
+Webserver, website, and database connection using NodeJS, Express, Express Session, and MySQL.
 
 
 ## Project 3
